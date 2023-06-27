@@ -34,13 +34,19 @@ btnAddTask.addEventListener("click", () => {
 
 function openNewTaskForm() {
   const formWrapper = document.querySelector("#form-wrapper");
-
   formWrapper.style.visibility = "visible";
 
   formWrapper.addEventListener("click", (e) => {
-    e.preventDefault();
     if (e.target == formWrapper) {
+      e.preventDefault();
       formWrapper.style.visibility = "hidden";
     }
   });
 }
+
+//delete
+const submitBtn = document.querySelector("#input-submit");
+submitBtn.addEventListener("click", () => {
+  const formWrapper = document.querySelector("#form-wrapper");
+  formWrapper.style.visibility = "hidden";
+});

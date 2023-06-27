@@ -22,31 +22,35 @@
         <button class="btn-add-project" id="btn-add-project">+ Add Project</button>
         <button class="btn-add-task" id="btn-add-task">Add Task</button>
       </div>
-
       <div class="right-panel">
-        <div class="tast-list" id="task-list"></div>
+        <div class="task-list" id="task-list"></div>
       </div>
       <div class="form-wrapper" id="form-wrapper">
         <div class="new-task-form" id="new-task-form">
-          <h2>Add a new task...</h2>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title: Buy groceries"
-            id="title-input"
-            class="form-input"
-            required
-          />
-          <input
-            type="text"
-            name="description"
-            placeholder="Description: Apples, bread, water..."
-            id="description-input"
-            class="form-input"
-            required
-          />
-          <input type="date" name="date" id="date-input" class="form-input" />
-          <button class="submit-new-task" id="submit-new-task">Add task</button>
+          <h2 class="form-header">Add a new task...</h2>
+          <div class="input-wrapper">
+            <textarea
+              name="title"
+              id="input-title"
+              class="textarea"
+              cols="30"
+              rows="2"
+              placeholder="Title: Buy groceries"
+            ></textarea>
+            <textarea
+              name="description"
+              id="input-description"
+              class="textarea"
+              cols="30"
+              rows="8"
+              placeholder="Apples, bread, water..."
+            ></textarea>
+            <div class="options-wrapper">
+              <input type="button" value="High Priority" class="input-btn" />
+              <input type="date" name="date" id="input-date" class="input-btn" />
+            </div>
+            <input type="button" value="Add task" id="input-submit" class="input-btn" />
+          </div>
         </div>
       </div>
     </div>
