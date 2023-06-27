@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1>To-Do List</h1>
+    </header>
+    <div class="content">
+      <div class="left-panel">
+        <button class="btn-default active" id="btn-default-home">Home</button>
+        <button class="btn-default" id="btn-default-today">Today</button>
+        <button class="btn-default" id="btn-default-week">This Week</button>
+        <h1 class="projects-header">Projects</h1>
+        <div class="user-projects-list" id="user-projects-list"></div>
+        <button class="btn-add-project" id="btn-add-project">+ Add Project</button>
+        <button class="btn-add-task" id="btn-add-task">Add Task</button>
+      </div>
+
+      <div class="right-panel">
+        <div class="tast-list" id="task-list"></div>
+      </div>
+      <div class="form-wrapper" id="form-wrapper">
+        <div class="new-task-form" id="new-task-form">
+          <h2>Add a new task...</h2>
+          <input
+            type="text"
+            name="title"
+            placeholder="Title: Buy groceries"
+            id="title-input"
+            class="form-input"
+            required
+          />
+          <input
+            type="text"
+            name="description"
+            placeholder="Description: Apples, bread, water..."
+            id="description-input"
+            class="form-input"
+            required
+          />
+          <input type="date" name="date" id="date-input" class="form-input" />
+          <button class="submit-new-task" id="submit-new-task">Add task</button>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">copyright</footer>
+  </body>
+</html>

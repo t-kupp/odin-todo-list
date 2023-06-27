@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+*,
+*::after,
+*::before {
+  font-family: "Noto Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Content Wrapper  */
+.content {
+  height: calc(100vh - 100px - 50px);
+}
+
+/* Header  */
+.header {
+  color: white;
+  background-color: gray;
+  height: 100px;
+  line-height: 100px;
+  padding-left: 15px;
+}
+
+/* Sidebar  */
+.left-panel {
+  background-color: lightgrey;
+  height: 100%;
+  width: 200px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.active {
+  background-color: grey;
+  font-weight: 700;
+}
+
+.btn-default, .btn-add-project, .btn-add-task {
+  color: inherit;
+  background-color: inherit;
+  cursor: pointer;
+  padding: 6px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  text-align: start;
+}
+
+.btn-default:hover, .btn-add-project:hover, .btn-add-task:hover {
+  background-color: gray;
+}
+
+.btn-add-task {
+  width: 5rem;
+  text-align: center;
+  color: white;
+  background-color: gray;
+  margin-top: auto;
+}
+
+.btn-add-task:hover {
+  color: grey;
+  background-color: white;
+}
+
+/* Footer  */
+.footer {
+  color: white;
+  background-color: gray;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 15px;
+}
+
+/* New Task Form  */
+.form-wrapper {
+  visibility: visible;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+}
+
+.new-task-form {
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40rem;
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input {
+  padding: 5px;
+  margin: 5px 0;
+}
