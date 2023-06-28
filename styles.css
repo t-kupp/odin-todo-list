@@ -12,6 +12,7 @@
 /* Content Wrapper  */
 .content {
   height: calc(100vh - 100px - 50px);
+  display: flex;
 }
 
 /* Header  */
@@ -83,9 +84,6 @@
 .form-wrapper {
   visibility: hidden;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
@@ -141,4 +139,58 @@
 
 .input-btn:active {
   background-color: grey;
+}
+
+/* Right Panel  */
+
+.right-panel {
+  width: 100%;
+  padding: 15px;
+}
+
+.task-wrapper {
+  max-width: 1000px;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-side,
+.right-side {
+  display: flex;
+}
+
+.task-title,
+.task-description,
+.task-date,
+.task-important,
+.task-done {
+  margin: 0 5px;
+}
+
+.task-title {
+  font-weight: 600;
+}
+
+.task-description {
+  font-size: 0.8rem;
+  align-self: center;
+}
+
+.task-important {
+  color: darkred;
+  font-weight: 600;
+  min-width: 15px;
+}
+
+.toggled {
+  color: white;
+  background-color: grey;
+}
+
+.task-date {
+  min-width: 85px;
 }

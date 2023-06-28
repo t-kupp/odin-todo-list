@@ -9,6 +9,37 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <div class="form-wrapper" id="form-wrapper">
+      <div class="new-task-form" id="new-task-form">
+        <h2 class="form-header">Add a new task...</h2>
+        <form action="">
+          <div class="input-wrapper">
+            <textarea
+              name="title"
+              id="input-title"
+              class="textarea"
+              cols="30"
+              rows="2"
+              placeholder="Title: Buy groceries"
+              required
+            ></textarea>
+            <textarea
+              name="description"
+              id="input-description"
+              class="textarea"
+              cols="30"
+              rows="8"
+              placeholder="Apples, bread, water..."
+            ></textarea>
+            <div class="options-wrapper">
+              <input type="button" value="Important?" id="input-important" class="input-btn" />
+              <input type="date" name="date" id="input-date" class="input-btn" />
+            </div>
+            <input type="button" value="Add Task" id="input-submit" class="input-btn" />
+          </div>
+        </form>
+      </div>
+    </div>
     <header class="header">
       <h1>To-Do List</h1>
     </header>
@@ -24,34 +55,6 @@
       </div>
       <div class="right-panel">
         <div class="task-list" id="task-list"></div>
-      </div>
-      <div class="form-wrapper" id="form-wrapper">
-        <div class="new-task-form" id="new-task-form">
-          <h2 class="form-header">Add a new task...</h2>
-          <div class="input-wrapper">
-            <textarea
-              name="title"
-              id="input-title"
-              class="textarea"
-              cols="30"
-              rows="2"
-              placeholder="Title: Buy groceries"
-            ></textarea>
-            <textarea
-              name="description"
-              id="input-description"
-              class="textarea"
-              cols="30"
-              rows="8"
-              placeholder="Apples, bread, water..."
-            ></textarea>
-            <div class="options-wrapper">
-              <input type="button" value="High Priority" class="input-btn" />
-              <input type="date" name="date" id="input-date" class="input-btn" />
-            </div>
-            <input type="button" value="Add task" id="input-submit" class="input-btn" />
-          </div>
-        </div>
       </div>
     </div>
     <footer class="footer">copyright</footer>
