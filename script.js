@@ -10,10 +10,9 @@ const btnImportant = document.querySelector("#input-important");
 let myTasks = [];
 
 // Constructor to create new tasks and push them into the array
-function Task(title, description, project, date, isImportant, isDone) {
+function Task(title, description, date, isImportant, isDone) {
   this.title = title;
   this.description = description;
-  this.project = project;
   this.date = date;
   this.isImportant = isImportant;
   this.isDone = isDone;
@@ -24,7 +23,6 @@ function Task(title, description, project, date, isImportant, isDone) {
 new Task(
   "Finish the To-Do List", //title
   "Complete this project to advance to the next part of the curriculum.", //description
-  "home", //project folder
   "2023-07-01", //date
   true, //isImportant
   false //isDone
@@ -59,7 +57,7 @@ btnSubmitForm.addEventListener("click", () => {
     return;
   }
 
-  new Task(title.value.trim(), description.value.trim(), "", date.value, isImportant, false);
+  new Task(title.value.trim(), description.value.trim(), date.value, isImportant, false);
 
   title.value = "";
   description.value = "";
@@ -108,6 +106,16 @@ function drawTasksFromArray() {
     newIsDone.type = "checkbox";
     newIsDone.checked = myTasks[i].isDone;
     newIsDone.classList.add("task-done");
+    if (myTasks[i].isDone == true) newTaskWrapper.classList.add("task-completed");
+    if (myTasks[i].isDone == false) newTaskWrapper.classList.remove("task-completed");
+    newIsDone.addEventListener("click", () => {
+      if (myTasks[i].isDone == false) {
+        myTasks[i].isDone = true;
+      } else {
+        myTasks[i].isDone = false;
+      }
+      drawTasksFromArray();
+    });
 
     const newDeleteButton = newRightSide.appendChild(document.createElement("input"));
     newDeleteButton.type = "button";
@@ -136,3 +144,5 @@ function toggleImportantStatus() {
   btnImportant.classList.add("toggled");
   isImportant = true;
 }
+
+// Add new projects

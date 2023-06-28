@@ -3,10 +3,13 @@
 *,
 *::after,
 *::before {
-  font-family: "Noto Sans", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
 }
 
 /* Content Wrapper  */
@@ -158,6 +161,10 @@
   justify-content: space-between;
 }
 
+.task-completed {
+  opacity: 0.5;
+}
+
 .left-side,
 .right-side {
   display: flex;
@@ -193,4 +200,28 @@
 
 .task-date {
   min-width: 85px;
+}
+
+/* Copyright */
+
+.copyright {
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+}
+
+.copyright > p > a {
+  text-decoration: none;
+  color: inherit;
+  margin: 0 3px;
+  transition: ease-in-out 100ms;
+}
+
+.fa-github {
+  font-size: 1.4rem;
+  vertical-align: middle;
+}
+
+.copyright > p > a:hover {
+  color: gold;
 }
