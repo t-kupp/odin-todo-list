@@ -1,33 +1,30 @@
 const btnToday = document.querySelector("#btn-default-today");
 const btnWeek = document.querySelector("#btn-default-week");
-
 const btnAddTask = document.querySelector("#btn-add-task");
 const btnSubmitForm = document.querySelector("#input-submit");
 const taskList = document.querySelector("#task-list");
 const btnImportant = document.querySelector("#input-important");
+const btnHome = document.querySelector("#btn-default-home");
+const userProjectsListWrapper = document.querySelector("#user-projects-list-wrapper");
 
-let activeProjectID = 0;
-
-let myTasks = [];
-let myProjects = [];
+let myTasks = {};
+let activeProject = "home";
 
 // push new project array
-function newProjectArray() {
-  myTasks.push(new Array());
+function ProjectArray(projectName) {
+  myTasks[projectName] = [];
 }
 
-newProjectArray();
+new ProjectArray("home");
 
 // Constructor to create new tasks and push them into the array
-class Task {
-  constructor(title, description, date, isImportant, isDone) {
-    this.title = title;
-    this.description = description;
-    this.date = date;
-    this.isImportant = isImportant;
-    this.isDone = isDone;
-    myTasks[activeProjectID].push(this);
-  }
+function Task(title, description, date, isImportant, isDone, activeProject) {
+  this.title = title;
+  this.description = description;
+  this.date = date;
+  this.isImportant = isImportant;
+  this.isDone = isDone;
+  myTasks[activeProject].push(this);
 }
 
 // Example task
@@ -36,7 +33,8 @@ new Task(
   "Complete this project to advance to the next part of the curriculum.", //description
   "2023-07-01", //date
   true, //isImportant
-  false //isDone
+  false, //isDone
+  "home"
 );
 
 // Clicking the Add Task button opens the new task form
@@ -67,7 +65,14 @@ btnSubmitForm.addEventListener("click", () => {
     return;
   }
 
-  new Task(title.value.trim(), description.value.trim(), date.value, isImportant, false);
+  new Task(
+    title.value.trim(),
+    description.value.trim(),
+    date.value,
+    isImportant,
+    false,
+    activeProject
+  );
 
   resetForm(title, description, date);
 
@@ -88,7 +93,7 @@ function resetForm(title, description, date) {
 function drawTasksFromArray() {
   taskList.innerHTML = "";
 
-  for (let i = 0; i < myTasks[activeProjectID].length; i++) {
+  for (let i = 0; i < myTasks[activeProject].length; i++) {
     const newTaskWrapper = taskList.appendChild(document.createElement("div"));
     newTaskWrapper.classList.add("task-wrapper");
 
@@ -99,46 +104,43 @@ function drawTasksFromArray() {
     newRightSide.classList.add("right-side");
 
     const newTitle = newLeftSide.appendChild(document.createElement("p"));
-    newTitle.textContent = myTasks[activeProjectID][i].title;
+    newTitle.textContent = myTasks[activeProject][i].title;
     newTitle.classList.add("task-title");
 
     const newDescription = newLeftSide.appendChild(document.createElement("p"));
-    newDescription.textContent = myTasks[activeProjectID][i].description;
+    newDescription.textContent = myTasks[activeProject][i].description;
     newDescription.classList.add("task-description");
 
-    const newImportant = newRightSide.appendChild(document.createElement("p"));
-    newImportant.classList.add("task-important");
-    if (myTasks[activeProjectID][i].isImportant == true) {
-      newImportant.textContent = "!!!";
+    if (myTasks[activeProject][i].isImportant == true) {
+      newTaskWrapper.classList.add("important");
     }
 
     const newDate = newRightSide.appendChild(document.createElement("p"));
-    newDate.textContent = myTasks[activeProjectID][i].date;
+    newDate.textContent = myTasks[activeProject][i].date;
     newDate.classList.add("task-date");
 
     const newIsDone = newRightSide.appendChild(document.createElement("input"));
     newIsDone.type = "checkbox";
     newIsDone.name = "checkbox";
-    newIsDone.checked = myTasks[activeProjectID][i].isDone;
+    newIsDone.checked = myTasks[activeProject][i].isDone;
     newIsDone.classList.add("task-done");
-    if (myTasks[activeProjectID][i].isDone == true) newTaskWrapper.classList.add("task-completed");
-    if (myTasks[activeProjectID][i].isDone == false)
+    if (myTasks[activeProject][i].isDone == true) newTaskWrapper.classList.add("task-completed");
+    if (myTasks[activeProject][i].isDone == false)
       newTaskWrapper.classList.remove("task-completed");
     newIsDone.addEventListener("click", () => {
-      if (myTasks[activeProjectID][i].isDone == false) {
-        myTasks[activeProjectID][i].isDone = true;
+      if (myTasks[activeProject][i].isDone == false) {
+        myTasks[activeProject][i].isDone = true;
       } else {
-        myTasks[activeProjectID][i].isDone = false;
+        myTasks[activeProject][i].isDone = false;
       }
       drawTasksFromArray();
     });
 
-    const newDeleteButton = newRightSide.appendChild(document.createElement("input"));
-    newDeleteButton.type = "button";
-    newDeleteButton.value = "DEL";
+    const newDeleteButton = newRightSide.appendChild(document.createElement("button"));
+    newDeleteButton.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
     newDeleteButton.classList.add("task-delete");
     newDeleteButton.addEventListener("click", () => {
-      myTasks[activeProjectID].splice(i, 1);
+      myTasks[activeProject].splice(i, 1);
       drawTasksFromArray();
     });
   }
@@ -162,18 +164,63 @@ function toggleImportantStatus() {
 }
 
 // Sidebar Home button
-const btnHome = document.querySelector("#btn-default-home");
-btnHome.addEventListener("click", () => {
-  activeProjectID = 0;
+btnHome.addEventListener("click", (e) => {
+  activeProject = "home";
   drawTasksFromArray();
 });
 
 // Add Project button
 const btnAddProject = document.querySelector("#btn-add-project");
-btnAddProject.addEventListener("click", () => {
-  const newInputField = btnAddProject.appendChild(document.createElement("input"));
-  newInputField.classList.add("newProjectInput");
 
-  // add confirm button
-  // put input and confirm in a flex wrapper so they are side by side
+btnAddProject.addEventListener("click", function f(e) {
+  const addProjectWrapper = document.querySelector("#add-project-wrapper");
+
+  const newWrapper = addProjectWrapper.appendChild(document.createElement("div"), null);
+  newWrapper.classList.add("new-project-input-wrapper");
+
+  const newTextInput = newWrapper.appendChild(document.createElement("input"));
+  newTextInput.classList.add("new-project-text-input");
+
+  const newConfirm = newWrapper.appendChild(document.createElement("button"));
+  newConfirm.classList.add("checkmark");
+  newConfirm.innerHTML = "✓";
+
+  newConfirm.addEventListener("click", () => {
+    if (newTextInput.value.trim() == "") {
+      alert("Please enter a name for your new project.");
+      return;
+    }
+
+    new ProjectArray(newTextInput.value.trim());
+    appendNewProject(newTextInput.value.trim());
+    newWrapper.remove();
+    btnAddProject.style.display = "block";
+  });
+  btnAddProject.style.display = "none";
 });
+
+// Add new projects to the project list
+function appendNewProject(newProjectName) {
+  const newProjectWrapper = userProjectsListWrapper.appendChild(document.createElement("div"));
+  newProjectWrapper.classList.add("user-project-wrapper");
+  newProjectWrapper.addEventListener("click", () => {
+    activeProject = newProjectName;
+    drawTasksFromArray();
+  });
+
+  const newProject = newProjectWrapper.appendChild(document.createElement("input"));
+  newProject.classList.add("user-project");
+  newProject.type = "button";
+  newProject.value = newProjectName;
+
+  const newProjectDeleteBtn = newProjectWrapper.appendChild(document.createElement("button"));
+  newProjectDeleteBtn.classList.add("user-project-delete");
+  newProjectDeleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+  newProjectDeleteBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // prevents conflict with wrapper click event
+    delete myTasks[newProjectName];
+    newProjectWrapper.remove();
+    activeProject = "home";
+    drawTasksFromArray();
+  });
+}

@@ -27,7 +27,7 @@ body {
   padding-left: 15px;
 }
 
-/* Sidebar  */
+/* Left panel  */
 .left-panel {
   background-color: lightgrey;
   height: 100%;
@@ -44,7 +44,8 @@ body {
 
 .btn-default,
 .btn-add-project,
-.btn-add-task {
+.btn-add-task,
+.user-project-wrapper {
   color: inherit;
   background-color: inherit;
   cursor: pointer;
@@ -57,13 +58,15 @@ body {
 
 .btn-default:hover,
 .btn-add-project:hover,
-.btn-add-task:hover {
+.btn-add-task:hover,
+.user-project-wrapper:hover {
   background-color: darkgray;
 }
 
 .btn-default:active,
 .btn-add-project:active,
-.btn-add-task:active {
+.btn-add-task:active,
+.user-project-wrapper:active {
   background-color: gray;
 }
 
@@ -80,13 +83,47 @@ body {
   background-color: white;
 }
 
-/* Footer  */
-.footer {
-  color: white;
-  background-color: gray;
-  height: 50px;
-  line-height: 50px;
-  padding-left: 15px;
+.new-project-input-wrapper {
+  padding: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.new-project-text-input {
+  outline: 1px solid black;
+  border: none;
+  width: 80%;
+  padding: 1px;
+}
+
+.user-project,
+.user-project-delete {
+  border: none;
+  outline: none;
+  background-color: inherit;
+}
+
+.user-project {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px;
+  cursor: pointer;
+}
+
+.user-project-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkmark {
+  font-weight: 600;
+  border: none;
+  outline: none;
+  background-color: inherit;
+  cursor: pointer;
+  width: 19px;
 }
 
 /* New Task Form  */
@@ -180,7 +217,8 @@ body {
 .task-description,
 .task-date,
 .task-important,
-.task-done {
+.task-done,
+.task-delete {
   margin: 0 5px;
 }
 
@@ -199,13 +237,36 @@ body {
   min-width: 15px;
 }
 
+.task-date {
+  min-width: 85px;
+}
+
+.task-delete {
+  border: none;
+  background-color: inherit;
+}
+
 .toggled {
   color: white;
   background-color: grey;
 }
 
-.task-date {
-  min-width: 85px;
+.important {
+  border: 1px solid crimson;
+}
+
+/* Font Awesome icon  */
+.fa-trash-can {
+  cursor: pointer;
+}
+
+/* Footer  */
+.footer {
+  color: white;
+  background-color: gray;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 15px;
 }
 
 /* Copyright */
