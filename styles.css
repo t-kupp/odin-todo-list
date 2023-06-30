@@ -58,6 +58,12 @@ body {
 .btn-default:hover,
 .btn-add-project:hover,
 .btn-add-task:hover {
+  background-color: darkgray;
+}
+
+.btn-default:active,
+.btn-add-project:active,
+.btn-add-task:active {
   background-color: gray;
 }
 
